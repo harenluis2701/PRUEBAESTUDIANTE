@@ -13,7 +13,7 @@ def cargar_datos():
             with open(ARCHIVOCSV, mode='r', newline='', encoding='utf-8') as archivo:
                 lector = csv.DictReader(archivo)
                 for fila in lector:
-                    # Convertir la edad a entero para mantener el tipo de dato correcto
+                    # Convert the age to an integer to maintain the correct data type.
                     fila['age'] = int(fila['age'])
                     students.append(fila)
         except Exception as e:
@@ -21,7 +21,7 @@ def cargar_datos():
     return students
 
 def guardar_datos(students):
-    #"""Guarda la lista de diccionarios en el archivo CSV para mantener los datos entre ejecuciones."""
+   #"""Saves the list of dictionaries to the CSV file to persist data between runs."""
     try:
         with open(ARCHIVOCSV, mode='w', newline='', encoding='utf-8') as archivo:
             escritor = csv.DictWriter(archivo, fieldnames=CAMPOS)
@@ -34,7 +34,7 @@ def crear_students(students):
 
     print("\n--- register new student ---")
     try:
-        id_estudiante = input (" Enter the student's (unique) ID : ").strip()       #eliminar caracteres específicos, usualmente espacios en blanco, tabuladores o saltos de línea, tanto del inicio como del final de una cadena de texto
+        id_estudiante = input (" Enter the student's (unique) ID : ").strip()       #Remove specific characters—typically whitespace, tabs, or line breaks—from both the beginning and the end of a text string.
 
 
         for c in students:
@@ -44,7 +44,7 @@ def crear_students(students):
             
         name = input("Enter the student's name: ").strip()
         age = int(input("Enter the student's age: "))
-        course = input("Enter the course or program ").strip().lower()     #convierte una cadena a minúsculas.
+        course = input("Enter the course or program ").strip().lower()     # Converts a string to lowercase.
         status = input("Enter the status (active/inactive) ").strip().lower()
 
         nuevo_estudiante={
@@ -70,7 +70,7 @@ def listar_students(students):
         return
 
     for c in students:
-        print(f"Id: {c['id']} | Name: {c['name']} | Age: {c['age']} | Course: {c['course'].capitalize()} | Status: {c['status'].capitalize()}")            #convertir la primera letra de una cadena de texto en mayúscula y transformar automáticamente todas las demás letras a minúsculas
+        print(f"Id: {c['id']} | Name: {c['name']} | Age: {c['age']} | Course: {c['course'].capitalize()} | Status: {c['status'].capitalize()}")            #Convert the first letter of a text string to uppercase and automatically transform all other letters to lowercase.
 
 def buscar_students(students):
     """Search for a student by matching ID or name."""
@@ -89,7 +89,7 @@ def buscar_students(students):
         print("No student was found with that information.")
 
 def actualizar_students(students):
-    #"""Actualiza la información de un estudiante existente pidiendo los nuevos datos."""
+   #Updates the information of an existing student by prompting for the new data.
     print("\n--- Update student---")
     id_buscar = input("Enter the ID of the student you wish to update: ").strip()
 
@@ -135,7 +135,7 @@ def eliminar_students(students):
     print("No student was found with that ID.")
 
 def menu():
-    #"""Función principal que despliega el menú en consola y gestiona la interacción."""
+   #"""Main function that displays the menu in the console and manages interaction."""
     students = cargar_datos()
 
     while True:
@@ -167,6 +167,6 @@ def menu():
         else:
             print("Invalid option. Please try again.")
 
-# Punto de ejecución
+# Execution Point
 if __name__ == "__main__":
     menu()                    
